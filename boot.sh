@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the repository URL and the project directory
-REPO_URL="git@git.uwaterloo.ca:g9zhu/aaron.git"
+REPO_URL="https://github.com/phillippZZ/aaron.git"
 PROJECT_DIR="aaron"
 
 # Clone the repository if it doesn't exist
