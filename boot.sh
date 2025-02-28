@@ -55,6 +55,8 @@ pip install -r requirements.txt || { echo "Failed to install required packages";
 echo "Installing Tesseract-OCR..."
 brew install tesseract || { echo "Failed to install Tesseract-OCR"; exit 1; }
 
+echo "Installing poppler..."
+brew install poppler || { echo "Failed to install poppler"; exit 1; }
 # Run the main program
 echo "Running the main program..."
 python src/main.py || { echo "Failed to run the main program"; exit 1; }
