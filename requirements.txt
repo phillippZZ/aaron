@@ -3,3 +3,4 @@ PyQt5
 pdf2image
 pytesseract
 openpyxl
+poppler
