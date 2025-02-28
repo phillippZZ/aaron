@@ -63,3 +63,5 @@ python src/main.py || { echo "Failed to run the main program"; exit 1; }
 
 # Deactivate the virtual environment
 deactivate
+
+cd .. #leave the project directory

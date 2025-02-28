@@ -35,7 +35,7 @@ class OCRProcessor:
                     logger.error(f"Number conversion error in line: {line} - {str(e)}")
                     return None
 
-                return {
+                result = {
                     "case_number": parts[0],          # CASE #
                     "lot_number": parts[1],           # LOT #
                     "yarn_id": parts[2],              # YARN L D
@@ -46,6 +46,8 @@ class OCRProcessor:
                     "tare_weight": tare,              # TARE WEIGHT
                     "net_weight": net                 # NET WEIGHT LBS
                 }
+                logger.info(f"Parsed line: {result}")
+                return result
         except (ValueError, IndexError) as e:
             logger.info(f"Skipping invalid line: {line}")  # Changed to info since some lines might be headers
             return None
@@ -66,6 +68,7 @@ class OCRProcessor:
                 logger.info(f"Processing page {i+1}")
                 page_text = pytesseract.image_to_string(image)
                 
+                logger.info(f"Page text: {page_text}")
                 for line in page_text.split('\n'):
                     if line.strip():
                         parsed_line = OCRProcessor.parse_line(line)
@@ -76,10 +79,12 @@ class OCRProcessor:
                 "status": "success",
                 "data": parsed_data
             }
+
             return result
         except Exception as e:
             error_msg = f"Error processing PDF: {str(e)}"
             logger.error(error_msg)
+            print(error_msg)
             return {
                 "status": "error",
                 "message": error_msg
