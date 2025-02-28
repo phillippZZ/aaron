@@ -3,7 +3,6 @@ import os
 import pdf2image
 import pytesseract
 import re
-import easyocr
 import numpy as np
 from logging_config import setup_logging
 import cv2
