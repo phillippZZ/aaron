@@ -55,8 +55,13 @@ pip install -r requirements.txt || { echo "Failed to install required packages";
 echo "Installing Tesseract-OCR..."
 brew install tesseract || { echo "Failed to install Tesseract-OCR"; exit 1; }
 
+# Install poppler using Homebrew
 echo "Installing poppler..."
 brew install poppler || { echo "Failed to install poppler"; exit 1; }
+
+# Export PyQt plugin path from the virtual environment
+export QT_QPA_PLATFORM_PLUGIN_PATH="$(.venv/bin/python -c 'import PyQt5.QtCore; print(PyQt5.QtCore.QLibraryInfo.location(PyQt5.QtCore.QLibraryInfo.PluginsPath))')"
+
 # Run the main program
 echo "Running the main program..."
 python src/main.py || { echo "Failed to run the main program"; exit 1; }
@@ -64,4 +69,5 @@ python src/main.py || { echo "Failed to run the main program"; exit 1; }
 # Deactivate the virtual environment
 deactivate
 
-cd .. #leave the project directory
+# Leave the project directory
+cd ..
